@@ -1,0 +1,11 @@
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://20.171.50.156:80; # can be set with Private IP if the VM is placed in same subnet
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
